@@ -1,0 +1,408 @@
+{
+  "name": "Employee Onboarding Automation with Google Forms and Email Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU",
+          "mode": "list",
+          "cachedResultName": "Employee Onboarding Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1314447316,
+          "mode": "list",
+          "cachedResultName": "Form responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU/edit#gid=1314447316"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('New Employee Form Submission').item.json.Name }}",
+            "Email": "={{ $('New Employee Form Submission').item.json.Email }}",
+            "Job role": "={{ $('New Employee Form Submission').item.json['Job role'] }}",
+            "Department": "={{ $('New Employee Form Submission').item.json.Department }}",
+            "Phone number ": "={{ $('New Employee Form Submission').item.json['Phone number '] }}",
+            "Place": "={{ $('New Employee Form Submission').item.json.Place }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Job role",
+              "displayName": "Job role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Department",
+              "displayName": "Department",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone number ",
+              "displayName": "Phone number ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Place",
+              "displayName": "Place",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "9ab2c3ab-6d89-4616-a393-01c6df734ed0",
+      "name": "Store Employee Details",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        144
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "URb7yx0uAbrrnZyT",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "pandajuly582@gmail.com",
+        "subject": "=New Employee Onboarding Completed - {{ $json.Name }}",
+        "message": "=<p style=\"font-family: Arial, sans-serif; font-size: 14px;\">\nDear HR Team,\n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 14px;\">\nThis is to inform you that the onboarding process for the following employee has been successfully completed.\nPlease find the details below:\n</p>\n\n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\"\n       style=\"border-collapse: collapse; table-layout: fixed; max-width: 600px;\n              font-family: Arial, sans-serif; font-size: 14px;\">\n  <tr style=\"background-color: #333333; color: #ffffff;\">\n    <th style=\"border: 1px solid #555555; padding: 12px; text-align: left; width: 35%;\">\n      Field\n    </th>\n    <th style=\"border: 1px solid #555555; padding: 12px; text-align: left; width: 65%;\">\n      Details\n    </th>\n  </tr>\n\n  <tr>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Employee Name</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">{{$json.Name}}</td>\n  </tr>\n\n  <tr style=\"background-color: #f9f9f9;\">\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Email ID</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\n               word-break: break-all; white-space: normal; overflow-wrap: anywhere;\">\n      {{$json.Email}}\n    </td>\n  </tr>\n\n  <tr>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Phone Number</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\n               word-break: break-all; white-space: normal; overflow-wrap: anywhere;\">\n{{ $json['Phone '] }}    \n    </td>\n  </tr>\n\n  <tr style=\"background-color: #f9f9f9;\">\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Place</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">{{$json.Place}}</td>\n  </tr>\n\n  <tr>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Department</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">\n      {{$json['Department ']}}\n    </td>\n  </tr>\n\n  <tr style=\"background-color: #f9f9f9;\">\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">Role</td>\n    <td style=\"border: 1px solid #cccccc; padding: 12px;\">\n      {{$json['job role']}}\n    </td>\n  </tr>\n</table>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 14px; margin-top: 16px;\">\nKindly proceed with the remaining onboarding formalities as required.\n</p>\n\n<p style=\"font-family: Arial, sans-serif; font-size: 14px;\">\nBest regards,<br>\n<strong>xyz company</strong>\n</p>\n\n\n\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3186a87d-ce26-4474-aaaf-2890c3836386",
+      "name": "Notify HR About Onboarding",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -112,
+        -160
+      ],
+      "webhookId": "7eebb1cc-50b0-4fb7-975e-7f0d75e9bb52",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "45O2psqJC2d0ziLs",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU",
+          "mode": "list",
+          "cachedResultName": "Employee Onboarding Form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1314447316,
+          "mode": "list",
+          "cachedResultName": "Form responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YQRQKV5gCQoMRSCywrb9SemIPp96uh1JGO7OW6RRvBU/edit#gid=1314447316"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "id": "af7d46f3-bc75-4082-b4ed-b77654b1a51c",
+      "name": "New Employee Form Submission",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        -160
+      ],
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "RjvkgrtcDLeXzLqi",
+          "name": "Google Sheets Trigger account 3"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -16
+      ],
+      "id": "73f759dd-0cf3-460b-907b-182038584aba",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "sendTo": "pandajuly582@gmail.com",
+        "subject": "New Employee Onboarded",
+        "emailType": "text",
+        "message": "=New Employee Onboarding Details\n\nName: {{ $('New Employee Form Submission').item.json.Name }}\n\nEmail: {{ $('New Employee Form Submission').item.json.Email }}\n\nPhone number: {{ $('Store Employee Details').item.json['Phone number'] }}\n\nPlace:{{ $('Store Employee Details').item.json['Place '] }}\n\nDepartment: {{ $('New Employee Form Submission').item.json.Department }}\n\nRole: {{ $('New Employee Form Submission').item.json['Job role'] }}\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        -16
+      ],
+      "id": "522a805c-065c-4882-a192-d1fb967bbdb6",
+      "name": "Send a message HR",
+      "webhookId": "4d740d77-b5f8-4980-b519-3c0850aa3232",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jvFsgYrBkcuTO7Vb",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('New Employee Form Submission').item.json.Email }}",
+        "subject": "Onboarding Completed - Welcome to the Company",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Onboarding Completed</title>\n</head>\n<body style=\"font-family: Arial, Helvetica, sans-serif; color: #333333; background-color: #ffffff; line-height: 1.6;\">\n\n  <p>Dear {{ $('New Employee Form Submission').item.json.Name }} </p>\n\n  <p>\n    We are pleased to inform you that your onboarding process has been successfully completed.\n  </p>\n\n  <p>\n    Our HR team will contact you shortly with further details regarding the next steps.\n  </p>\n\n  <p>\n    We wish you great success in your journey with us.\n  </p>\n\n  <br>\n\n  <p>\n    Best regards,<br>\n    <strong>HR Team</strong><br>\n    <span style=\"color: #555555;\">xyz company</span>\n  </p>\n\n  <br>\n\n  <p style=\"font-size: 12px; color: #888888;\">\n    \n  </p>\n\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        144
+      ],
+      "id": "806ae0c5-0346-44f8-a77b-452371a4089a",
+      "name": "Send a message employee",
+      "webhookId": "e299a203-caa7-400c-9469-9403122e6570",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "45O2psqJC2d0ziLs",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7481139-bf7c-4516-a8bf-e8ad26449be2",
+              "name": "Name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "81effcd0-2bbc-4fcd-9535-7b182b057956",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "5042aa3f-8ae0-438b-94ad-8035a65b0dd7",
+              "name": "job role",
+              "value": "={{ $json['Job role'] }}",
+              "type": "string"
+            },
+            {
+              "id": "50486965-676c-43ef-b955-6dfbbf494d9b",
+              "name": "Department ",
+              "value": "={{ $json.Department }}",
+              "type": "string"
+            },
+            {
+              "id": "b537ad6d-5bff-40b2-bc08-969b7ab596e7",
+              "name": "Phone ",
+              "value": "={{ $json['Phone number '] }}",
+              "type": "number"
+            },
+            {
+              "id": "64dd3d9f-5991-434a-8e6b-68537d6a91f9",
+              "name": "Place",
+              "value": "={{ $json.Place }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -464,
+        -160
+      ],
+      "id": "1087376b-864f-435b-84e3-dceecdc3913a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -144,
+        144
+      ],
+      "id": "c109a489-6ba5-4629-b317-f4d9970ee6ba",
+      "name": "Wait",
+      "webhookId": "c7c2045e-395d-4fa6-abfa-d663357ec99c"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        1744
+      ],
+      "id": "d93e6c93-767e-404b-a961-f4d8380b88b3",
+      "name": "Limit1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Store Employee Details": {
+      "main": [
+        []
+      ]
+    },
+    "New Employee Form Submission": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify HR About Onboarding": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        []
+      ]
+    },
+    "Send a message employee": {
+      "main": [
+        [
+          {
+            "node": "Store Employee Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Notify HR About Onboarding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send a message employee",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "63b325ae-dd9c-4317-87b5-d6c251cfc327",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "86882b5a97449215a2d4deb5be531fbbad9c11da73f3a318d0fe17fb7521f76f"
+  },
+  "id": "_tY9r5Axh26K6SPvSFrv_",
+  "tags": []
+}
